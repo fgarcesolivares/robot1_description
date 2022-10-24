@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" 
+ 	xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	name="robot1_xacro">
+
+	<xacro:macro name="transmission_block" params="joint_name">
+               <transmission name="tran1">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${joint_name}">
+				<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="motor1">
+    				<mechanicalReduction>1</mechanicalReduction>
+    				<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  			</actuator>
+		</transmission>
+	</xacro:macro>
+	
+	<xacro:include filename="$(find robot1_description)/urdf/robot1.gazebo" />
+	<self_collide>1</self_collide>
+	
+	<link name="world"/>
+	
+	<link name="base_link">
+   		<visual>
+			<geometry>
+      				<mesh filename="package://robot1_description/piezas_STL/base_link.STL" scale="0.001 0.001 0.001"/>
+      				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.15 -0.15 0"/>
+   		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/base_link.STL" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.15 -0.15 0"/>
+		</collision>
+		<inertial>
+		<origin rpy="1.570795 0 1.570795" xyz="-0.15 -0.15 0"/>
+	          <mass value="7068.58"/>
+	          <inertia ixx="45651268.25"  ixy="0"  ixz="0" iyx="0" iyy="79521564.04" iyz="0" izx="0" izy="0" izz="45651268.25" />
+	        </inertial>
+ 	</link>
+
+
+ <!-- arm -->
+
+	<link name="link1">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link1.STL" scale="0.001 0.001 0.001"/>
+       				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.04 -0.04 -0.255"/>
+			
+   		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link1.STL" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.04 -0.04 -0.255"/>
+		</collision>
+		<inertial>
+		<origin rpy="1.570795 0 1.570795" xyz="-0.04 -0.04 -0.255"/>
+	          <mass value="1138.86"/>
+	          <inertia ixx="6538491"  ixy="11.74"  ixz="2.26" iyx="11.74" iyy="960658.98" iyz="-2.07" izx="2.26" izy="-2.07" izz="6615332.2" />
+	        </inertial>
+		
+ 	</link>
+
+	<link name="link2">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link2.STL" scale="0.001 0.001 0.001"/>
+       				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="0 0 -1.570795" xyz="-0.06 0.036 -0.0575"/>
+		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link2.STL" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<origin rpy="0 0 -1.570795" xyz="-0.06 0.036 -0.0575"/>
+		</collision>
+		<inertial>
+		<origin rpy="0 0 -1.570795" xyz="-0.06 0.036 -0.0575"/>
+	          <mass value="1256.53"/>
+	          <inertia ixx = "7225636.75"  ixy = "-5.83"  ixz = "12.61"  iyx = "-5.83"  iyy = "1838137.09"  iyz = "6.66"  izx = "12.61" izy = "6.66" izz = "6396193.38" />
+	        </inertial>
+ 	</link>
+ 	
+ 	<link name="link3">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link33.STL" scale="0.001 0.001 0.001"/>
+       				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="0 0 1.570795" xyz="0.029 -0.045 -0.029"/>
+		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link33.STL" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<origin rpy="0 0 1.570795" xyz="0.029 -0.045 -0.029"/>
+		</collision>
+		<inertial>
+		<origin rpy="0 0 1.570795" xyz="0.029 -0.045 -0.029"/>
+	          <mass value="509.81"/>
+	          <inertia ixx = "229444.68"  ixy = "0.22"  ixz = "-3.2"  iyx = "0.22"  iyy = "1704149.91"  iyz = "-2.48"  izx = "-3.2"  izy = "-2.48"  izz = "1713464.21" />
+	        </inertial>
+ 	</link>
+ 	
+ 	<link name="link4">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link4.STL" scale="0.001 0.001 0.001"/>
+       				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.0315 -0.029 -0.085"/>
+		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link4.STL" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<origin rpy="1.570795 0 1.570795" xyz="-0.0315 -0.029 -0.085"/>
+		</collision>
+		<inertial>
+		<origin rpy="1.570795 0 1.570795" xyz="-0.0315 -0.029 -0.085"/>
+	          <mass value="143.81"/>
+	          <inertia ixx = "124308.89" ixy = "-0.36"  ixz = "0.05"  iyx = "-0.36"  iyy = "72415.46"  iyz = "0.02"  izx = "0.05"  izy = "0.02"  izz = "110118.2" />
+	        </inertial>
+ 	</link>
+ 	
+ 	<link name="link5">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link5.STL" scale="0.001 0.001 0.00115"/>
+       				<scale>0.001 0.001 0.00115</scale>
+     			</geometry>
+			<origin rpy="-1.570795 0 1.570795" xyz="0.018 -0.03 0.018"/>
+		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link5.STL" scale="0.001 0.001 0.00115"/>
+			</geometry>
+			<origin rpy="-1.570795 0 1.570795" xyz="0.018 -0.03 0.018"/>
+		</collision>
+		<inertial>
+		<origin rpy="-1.570795 0 1.570795" xyz="0.018 -0.03 0.018"/>
+	          <mass value="44.81"/>
+	          <inertia ixx = "6927.26"  ixy = "0.00"  ixz = "0.01"  iyx = "0.00"  iyy = "18275.83"  iyz = "-0.21"  izx = "0.01"  izy = "-0.21"  izz = "19014.78" />
+	        </inertial>
+ 	</link>
+ 	
+ 	<link name="link6">
+   		<visual>
+     			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link6.STL" scale="0.001 0.001 0.00115"/>
+       				<scale>0.001 0.001 0.001</scale>
+     			</geometry>
+			<origin rpy="-1.570795 -1.570795 0" xyz="-0.03 -0.02 0.03"/>
+		</visual>
+		<collision>
+			<geometry>
+       				<mesh filename="package://robot1_description/piezas_STL/link6.STL" scale="0.001 0.001 0.00115"/>
+			</geometry>
+			<origin rpy="-1.570795 -1.570795 0" xyz="-0.03 -0.02 0.03"/>
+		</collision>
+		<inertial>
+		<origin rpy="-1.570795 -1.570795 0" xyz="-0.03 -0.02 0.03"/>
+	          <mass value="22.33"/>
+	          <inertia ixx = "2524.05"  ixy = "-4264.61"  ixz = "-0.13"  iyx = "-4264.61"  iyy = "23769.19"  iyz = "-0.18"  izx = "-0.13"  izy = "-0.18"  izz = "24725.42" />
+	        </inertial>
+ 	</link>
+ 	
+ 	<joint name="Joint_0" type="fixed">
+  	
+  		<origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+  		<parent link="world"/>
+  		<child link="base_link"/>
+  		<axis xyz="0.0 0.0 0.0"/>
+  		
+	</joint>
+
+	<joint name="base_to_link1" type="continuous">
+		 		
+		<parent link="base_link"/>
+		<child link="link1"/>
+		<axis xyz="0 0 1"/>
+		<origin rpy= "0 0 1.570795" xyz="0 0 0.355"/>
+		
+	</joint>
+
+	<joint name="link1_to_link2" type="continuous">
+		<parent link="link1"/>
+		<child link="link2"/>
+		<axis xyz="0 0 1"/>
+		<origin rpy="-1.570795 -1.570795 0" xyz="0 0 0"/>
+		
+	</joint>
+	
+	<joint name="link2_to_link3" type="continuous">
+		<parent link="link2"/>
+		<child link="link3"/>
+		<axis xyz="0 0 1"/>
+		<origin rpy="0 0 0" xyz="0.23 0 0"/>
+		
+	</joint>
+	
+	<joint name="link3_to_link4" type="continuous">
+		<parent link="link3"/>
+		<child link="link4"/>
+		<axis xyz="0 0 1"/>
+		<origin rpy="-1.570795 0 0" xyz="0 0.23 0"/>
+		
+	</joint>
+	
+	<joint name="link4_to_link5" type="continuous">
+		<parent link="link4"/>
+		<child link="link5"/>
+		<axis xyz="1 0 0"/>
+		<origin rpy="1.570795 0 0" xyz="0 0 0.0"/>
+		
+	</joint>
+
+	<joint name="link5_to_link6" type="continuous">
+		<parent link="link5"/>
+		<child link="link6"/>
+		<axis xyz="0 0 1"/>
+		<origin rpy="-1.570795 0 0" xyz="0.0 0 0.0"/>
+		
+	</joint>
+	
+	<xacro:transmission_block joint_name="base_to_link1"/>
+	<xacro:transmission_block joint_name="link1_to_link2"/>
+	<xacro:transmission_block joint_name="link2_to_link3"/>
+	<xacro:transmission_block joint_name="link3_to_link4"/>
+	<xacro:transmission_block joint_name="link4_to_link5"/>
+	<xacro:transmission_block joint_name="link5_to_link6"/>
+	
+<!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/robot1_description</robotNamespace>
+	
+    </plugin>
+  </gazebo>
+  
+</robot>

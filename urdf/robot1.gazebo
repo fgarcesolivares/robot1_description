@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot>
+  <!-- materials -->
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+ <gazebo reference="link1">
+        <material>Gazebo/Orange</material>
+ </gazebo>
+
+ <gazebo reference="link2">
+        <material>Gazebo/Orange</material>
+ </gazebo>
+
+ <gazebo reference="link3">
+        <material>Gazebo/Orange</material>
+ </gazebo>
+
+ <gazebo reference="link4">
+        <material>Gazebo/Orange</material>
+ </gazebo>
+ 
+<gazebo reference="link5">
+        <material>Gazebo/Orange</material>
+ </gazebo>
+ <gazebo reference="link6">
+        <material>Gazebo/white</material>
+ </gazebo>
+
+
+</robot>

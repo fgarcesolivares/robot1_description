@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+	<param name="robot_description" command="/opt/ros/noetic/bin/xacro /home/fredo/catkin_ws/src/robot1_description/urdf/robot1.xacro"/>
+	<param name="use_gui" value="True"/>
+	<arg default="$(find robot1_description)/launch/urdf.rviz" name="rvizconfig"/>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	<node name="rviz" pkg="rviz" type="rviz" />
+</launch>
